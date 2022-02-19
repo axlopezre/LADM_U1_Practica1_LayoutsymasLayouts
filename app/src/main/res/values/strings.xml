@@ -2,8 +2,8 @@
     <string name="app_name">Veterinaria López</string>
     <string name="sintomas">Sintomas</string>
     <array name="listamenu">
-        <item>Ficha de Salud</item>
         <item>Sintomas</item>
+        <item>Ficha de Salud</item>
     </array>
     <string name="title_activity_main2">Sintomas</string>
     <string name="title_home">Ficha de Salud</string>

@@ -8,9 +8,12 @@ import android.os.Handler
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowInsets
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import kotlinx.android.synthetic.main.activity_fullscreen.*
+import kotlinx.android.synthetic.main.activity_main2.*
 import mx.tecnm.tepic.ladm_u1_prctica1_layoutsymslayouts.databinding.ActivityFullscreenBinding
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -94,6 +97,7 @@ class FullscreenActivity : AppCompatActivity() {
         // while interacting with the UI.
 
         binding.guardar.setOnClickListener {
+            if(ValidaCampo(nombre1) || ValidaCampo(edad) || ValidaCampo(sexo) || ValidaCampo(dueno) || ValidaCampo(raza)) return@setOnClickListener
             guardarArchivo()
         }
 
@@ -128,6 +132,18 @@ class FullscreenActivity : AppCompatActivity() {
         }catch (e: Exception){
             AlertDialog.Builder(this).setMessage(e.message).show()
         }
+    }
+
+    fun ValidaCampo(text: EditText): Boolean{
+        if(nombre1.text.isEmpty() || edad.text.isEmpty() || sexo.text.isEmpty() || dueno.text.isEmpty() || raza.text.isEmpty()){
+            AlertDialog.Builder(this)
+                .setTitle("ERROR")
+                .setMessage("RELLENE EL O LOS CAMPOS CORRESPONDIENTES")
+                .setNeutralButton("ACEPTAR", {d,i->d.dismiss()})
+                .show()
+            return true
+        }
+        return false
     }
 
     private fun leerArchivo() {

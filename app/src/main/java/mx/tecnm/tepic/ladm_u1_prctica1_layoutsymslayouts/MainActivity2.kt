@@ -2,6 +2,8 @@ package mx.tecnm.tepic.ladm_u1_prctica1_layoutsymslayouts
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main2.*
 import mx.tecnm.tepic.ladm_u1_prctica1_layoutsymslayouts.databinding.ActivityMain2Binding
 import java.io.*
@@ -39,11 +42,15 @@ class MainActivity2 : AppCompatActivity() {
 
 
         binding.insertar.setOnClickListener {
-            vector.add(binding.valor.text.toString())
-            binding.valor.setText("")
-            mostrarlista()
+            if(ValidaCampo(valor)) return@setOnClickListener
+            else{
+                vector.add(binding.valor.text.toString())
+                binding.valor.setText("")
+                mostrarlista()
+            }
         }
         binding.insertarobservaciones.setOnClickListener {
+            if(ValidaCampo2(valor2)) return@setOnClickListener
             guardarDatos()
         }
         binding.regresar.setOnClickListener {
@@ -84,6 +91,29 @@ class MainActivity2 : AppCompatActivity() {
             }catch (e:Exception){
                 AlertDialog.Builder(this).setMessage(e.message).show()
             }
+    }
+
+    fun ValidaCampo(text: EditText): Boolean{
+        if(valor.text.isEmpty()){
+            AlertDialog.Builder(this)
+                .setTitle("ERROR")
+                .setMessage("RELLENE EL CAMPO CORRESPONDIENTE")
+                .setNeutralButton("ACEPTAR", {d,i->d.dismiss()})
+                .show()
+            return true
+        }
+        return false
+    }
+    fun ValidaCampo2(text: EditText): Boolean{
+        if(valor2.text.isEmpty()){
+            AlertDialog.Builder(this)
+                .setTitle("ERROR")
+                .setMessage("RELLENE EL CAMPO CORRESPONDIENTE")
+                .setNeutralButton("ACEPTAR", {d,i->d.dismiss()})
+                .show()
+            return true
+        }
+        return false
     }
 
     private fun leerDatos(){
