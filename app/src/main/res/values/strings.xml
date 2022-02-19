@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Veterinaria López</string>
+    <string name="sintomas">Sintomas</string>
+    <array name="listamenu">
+        <item>Ficha de Salud</item>
+        <item>Sintomas</item>
+    </array>
+    <string name="title_activity_main2">Sintomas</string>
+    <string name="title_home">Ficha de Salud</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_fullscreen">Sintomas</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">CLIC PARA CONTINUAR, \nBIENVENIDO</string>
+</resources>
